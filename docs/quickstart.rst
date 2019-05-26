@@ -139,9 +139,9 @@ access to the functionality is also possible.
 Basic C program
 ===============
 
-.. highlights:: c
+The first thing to do when writing a C program to utilize the libuca framework is to include the necessary headers.
 
-The first thing to do when writing a C program to utilize the libuca framework is to include the necessary headers. ::
+.. code-block:: c
 
     #include <glib-object.h>
     #include <uca/uca-plugin-manager.h>
@@ -151,7 +151,9 @@ Then inside the main function, you first have to setup the plugin manager object
 new camera object of the type *"phantom"*. For further details on the basic setup consult the
 `Libuca Quickstart <https://libuca.readthedocs.io/en/latest/quickstart.html>`_.
 To connect to the camera call the *start_recording* command. And only after the camera is connected the *grab* command
-can be used to get individual imaged from the camera::
+can be used to get individual imaged from the camera
+
+.. code-block:: c
 
     int main (int argc, char *argv[]) {
         // Declaring the variables to be used
@@ -186,12 +188,12 @@ can be used to get individual imaged from the camera::
 Basic Python program
 ====================
 
-.. highlights:: python
-
 **Note:** For libuca to work with Python you first need to make sure to have the library *PyGObject* installed. To
 install it visit the `Documentation <https://pygobject.readthedocs.io/en/latest/getting_started.html#ubuntu-logo-ubuntu-debian-logo-debian>`_.
 
-First you need to setup the PyGObject environment and import the *Uca* repository from it ::
+First you need to setup the PyGObject environment and import the *Uca* repository from it
+
+.. code-block:: python
 
     # This is a workaround for the beginning, to avoid having to create a new environmental variable permanently.
     # The actual path might vary on your system
@@ -203,7 +205,9 @@ First you need to setup the PyGObject environment and import the *Uca* repositor
     from gi.repository import Uca
 
 As with the C code, you first have to create the plugin manager object and from that you can request the camera object.
-Then you can use the function *create_array_from* to grab a frame from the camera ::
+Then you can use the function *create_array_from* to grab a frame from the camera
+
+.. code-block:: python
 
     # Just copy the function
     def create_array_from(camera):
