@@ -12,3 +12,10 @@ To see the detailed tutorial, please visit
 ### 0.0.0.1 - 26.05.2019
 
 - Added Quickstart chapter to the documentation
+
+### 0.1.0
+
+- Added a complete example in C
+- Added a section for the memread mode
+- Added a section for section for software trigger
+- Added a section for the connection process

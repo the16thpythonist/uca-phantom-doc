@@ -12,6 +12,8 @@ work is not already installed this has to be done before installing the plugin.
 Prerequisites
 =============
 
+.. highlight:: bash
+
 Obviously the `Libuca camera framework <https://github.com/ufo-kit/libuca>`_ is required to be installed prior to any
 steps involving the installation of the plugin. To install the libuca framework visit its own Documentation here:
 `Libuca Quickstart <https://libuca.readthedocs.io/en/latest/quickstart.html>`_.
@@ -150,8 +152,9 @@ The first thing to do when writing a C program to utilize the libuca framework i
 Then inside the main function, you first have to setup the plugin manager object and then use this object to create a
 new camera object of the type *"phantom"*. For further details on the basic setup consult the
 `Libuca Quickstart <https://libuca.readthedocs.io/en/latest/quickstart.html>`_.
-To connect to the camera call the *start_recording* command. And only after the camera is connected the *grab* command
-can be used to get individual imaged from the camera
+To connect to the camera, set the ``connect`` property of the object to True.
+Call the *start_recording* command to start the threads that will accept the incoming data connections.
+And only after the camera is connected the *grab* command can be used to get individual imaged from the camera.
 
 .. code-block:: c
 
@@ -166,7 +169,8 @@ can be used to get individual imaged from the camera
         manager = uca_plugin_manager_new();
         camera = uca_plugin_manager_get_camera(manager, "phantom", &error, c);
 
-        // Connecting to the camera
+        // Connecting to the camera and starting the readout threads
+        g_object_set(G_OBJECT(camera), "connect", TRUE, NULL);
         uca_camera_start_recording(camera, &error);
 
         // Reading out the x and y size of the region of interest (roi)
@@ -223,7 +227,8 @@ Then you can use the function *create_array_from* to grab a frame from the camer
         plugin_manager = Uca.PluginManager()
         camera = plugin_manager.get_camerav('phantom', [])
 
-        # Connecting the camera
+        # Connecting the camera and starting the readout threads
+        camera.props.connect = True
         camera.start_recording()
 
         # Grabbing a frame

@@ -16,6 +16,10 @@ camera protocol.
    :caption: Contents:
 
    quickstart
+   connection
+   trigger
+   memread
+   example
 
 
 
