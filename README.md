@@ -19,3 +19,8 @@ To see the detailed tutorial, please visit
 - Added a section for the memread mode
 - Added a section for section for software trigger
 - Added a section for the connection process
+
+### 0.1.1
+
+- Added the changes regarding the env variables for the uca-phantom 
+version 0.1.1

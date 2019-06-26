@@ -7,9 +7,36 @@ ports: Ether the "normal" 1G interface or the 10G interface. The most important 
 set the IP address and netmask for the ethernet interface *of the operating computer*, which is connected to the
 machine.
 
-======================
-The "connect" property
-======================
+=============================
+Using environmental variables
+=============================
+
+The best way to define the network configuration for the camera is by using the operating system's environmental
+variables. There are two variables, which can be defined:
+
+1) ``PH_NETWORK_ADDRESS``: Set this veriable to the string of IP address of the phantom camera you want to connect to.
+If this environmental variable is set, the phantom plugin will automatically call the connect routine during the
+creation of the camera object. So there will be no need to set a value for the "connect" flag of the object if this
+method is used! This is especially useful since this will create compatibility with UCA tools such as the command line
+utilities *uca-grab* and *uca-info*.
+
+2) ``PH_NETWORK_INTERFACE``: Set this variable to the string interface identifier of the ethernet interface of the
+operating machine to which to which the phantom 10G port is connected. This variable will only be needed for using the
+10G mode! If this variable is set to any value, this will implicitly also enable the 10G mode for the phantom plugin by
+setting the "enable-10g" flag of the camera object to TRUE.
+
+Example usage for *uca-info* (Assuming correct installation of libuca and plugins)
+
+.. code-block:: bash
+
+    $ export PH_NETWORK_ADDRESS=172.16.31.157
+    $ export PH_NETWORK_INTERFACE=eth0
+    $ uca-info "phantom"
+    // OUTPUT...
+
+=====================================
+Alternatively: The "connect" property
+=====================================
 
 To connect the camera from within the program, in such a way, that subsequent calls to the ``grab`` command will
 succeed to deliver image frames, essentially two steps are required.
